@@ -19,6 +19,11 @@ const main = () => {
     const featT = data.trackFeatures;
     console.log({featT});
 
+    const genresA = data.genreByArtist;
+    const genreArr = data.genres;
+    const genreCount = data.genresOccurrences;
+    console.log({genresA}, {genreArr}, {genreCount});
+
 
     return (
         <div>

@@ -24,3 +24,26 @@ export const artistIdsArr3 = artistIds.slice(100, artistIds.length);
 //audio features
 export const trackFeatures = audioFeatures.audio_features;
 
+//genres, from artists
+const artists = artists1.artists.concat(artists2.artists.concat(artists3.artists))
+export let genreByArtist = [];
+
+artists.map(a => genreByArtist.push(a.genres));
+
+//genre count
+export const genres = artists
+    .map((artist) => artist.genres.map((genre, i) => genre))
+    .reduce(
+      (accumulator, currentValue) => accumulator.concat(currentValue),
+      []
+    );
+
+export const genresOccurrences = {};
+
+for (let genre of genres) {
+    if (!genresOccurrences[genre]) {
+    genresOccurrences[genre] = 1;
+    } else {
+    genresOccurrences[genre]++;
+    }
+}
