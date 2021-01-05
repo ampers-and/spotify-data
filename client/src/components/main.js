@@ -1,5 +1,6 @@
 import React from 'react'
 import * as data from '../utils/manipulate'
+import { MyResponsivePie } from "./charts/genrePie";
 
 const main = () => {
 
@@ -22,7 +23,9 @@ const main = () => {
     const genresA = data.genreByArtist;
     const genreArr = data.genres;
     const genreCount = data.genresOccurrences;
-    console.log({genresA}, {genreArr}, {genreCount});
+    const genreData = data.pieDataForm;
+    const genreLessData = data.pieData;
+    console.log({genresA}, {genreArr}, {genreCount}, {genreData}, {genreLessData});
 
 
     return (
@@ -33,6 +36,9 @@ const main = () => {
             <p>{arr1A.toString()}</p>
             <p>{arr2A.toString()}</p>
             <p>{arr3A.toString()}</p>
+            <div style={{height: "1000px"}}>
+                <MyResponsivePie data = {genreLessData} />
+            </div>
         </div>
     )
 }

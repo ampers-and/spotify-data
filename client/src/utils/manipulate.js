@@ -47,3 +47,30 @@ for (let genre of genres) {
     genresOccurrences[genre]++;
     }
 }
+
+export const pieDataForm = [];
+
+for (let [k,v] of Object.entries(genresOccurrences)){
+
+  pieDataForm.push({
+    "id": k,
+    "label": k,
+    "value": v
+  })
+}
+
+//remove genres occuring once
+
+export const pieData = [];
+
+for (let [k,v] of Object.entries(genresOccurrences)){
+
+  if (v > 1)
+  {
+    pieData.push({
+      "id": k,
+      "label": k,
+      "value": v
+    })
+  }
+}
