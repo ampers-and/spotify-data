@@ -74,3 +74,67 @@ for (let [k,v] of Object.entries(genresOccurrences)){
     })
   }
 }
+
+//sunburst data format
+
+// {
+//   "name": "chart",
+//   "children": [
+//     {
+//       "name": "genre",
+//       "children": [
+//         {
+//           "name": "artist",
+//           "children": [
+//             {
+//               "name": "song",
+//               "loc": rank, number
+//             },
+
+//first, genre object with artist array
+
+
+//or song, artist, genre
+
+//song names
+export let trackNames = [];
+songs.items.map(i => trackNames.push(i.track.name));
+
+//artist names per track
+export let artistNamesbyTrack = [];
+
+songs.items.map( i => artistNamesbyTrack.push(i.track.artists.map(a => a.name)))
+
+//artists to genre object
+export let genreGroupedByArtist = {};
+
+artists.map(a => genreGroupedByArtist[a.name] = a.genres);
+
+//combine, song name -> artist children -> genre children
+
+export const bigData = {"songs":[]}
+
+//song names
+trackNames.forEach( t => bigData["songs"].push({"name": t}))
+
+
+//artist arrays -> names and genres
+artistNamesbyTrack.forEach( (a,i) => {
+  bigData["songs"][i]["artists"]= a.map( b => ({
+    "name": b, "genres": genreGroupedByArtist[b]
+  }))
+})
+
+export const bigDataFormat = { "name": "songs", "children":[]}
+
+//song names
+trackNames.forEach( t => bigDataFormat["children"].push({"name": t}))
+
+//artist arrays -> names and genres
+artistNamesbyTrack.forEach( (a,i) => {
+  bigDataFormat["children"][i]["children"]= a.map( b => ({
+    "name": b, "children": genreGroupedByArtist[b].map( c => ({
+      "name": c, "size": 1
+    }))
+  }))
+})
