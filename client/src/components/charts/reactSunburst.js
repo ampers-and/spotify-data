@@ -11,7 +11,7 @@ export const MySunburst = ({data}) => (
                 tooltipPosition="right"
                 keyId="Sunburst"
                 width={window.innerWidth * 0.8}
-                value={data.criteria}
+                value="size"
                 height={window.innerHeight * 0.8}
             />
 )

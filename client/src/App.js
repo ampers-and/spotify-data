@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Main from "./components/main"
+import Main from "./components/main";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         >
           Learn React
         </a>
-        <Main/>
+        {/* <Main/> */}
+        <Profile/>
       </header>
     </div>
   );
